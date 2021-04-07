@@ -8,7 +8,7 @@ workflows:
   main:
     jobs:
       - perl/build:
-          codecov: true
+          codecov: false
       - perl/test-linux:
           matrix:
             parameters:
