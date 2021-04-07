@@ -21,6 +21,6 @@ workflows:
             - perl/build
       - docker/publish:
           requires:
-            - build-and-publish
+            - perl/test-linux
           deploy: false
           image: darksoy/$CIRCLE_PROJECT_REPONAME
