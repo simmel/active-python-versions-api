@@ -9,8 +9,6 @@ workflows:
     jobs:
       - perl/build:
           codecov: true
-        environment:
-          - BUILD_DIR: "."
       - perl/test-linux:
           matrix:
             parameters:
