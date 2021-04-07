@@ -8,7 +8,12 @@ my $script = curfile->dirname->sibling('api.pl');
 my $t = Test::Mojo->new($script);
 is("meow", "meow", "is meow?");
 
-for my $file (qw(t/2021-04-07.html)) {
+my @tests = (
+["t/2021-04-07.html", ["3.9", "3.8", "3.7", "3.6"]]
+);
+use Data::Dumper;
+for my $test (@tests) {
+  my $file = $$test[0];
   my $data;
   {
     open my $fh, '<', $file or die;
@@ -16,7 +21,7 @@ for my $file (qw(t/2021-04-07.html)) {
     $data = <$fh>;
     close $fh;
   }
-  is($t->app->parse_versions($data), "fax", "is fax!");
+  is_deeply($t->app->parse_versions($data), $$test[1], $$test[0]." correctly parsed?");
 }
 
 done_testing();
