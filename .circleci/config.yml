@@ -4,6 +4,11 @@ orbs:
   perl: circleci/perl@1.0.0
   docker: circleci/docker@1.5.0
 
+jobs:
+  perl/build:
+    environment:
+      - BUILD_DIR: "."
+
 workflows:
   main:
     jobs:
