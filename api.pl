@@ -11,6 +11,11 @@ app->helper(parse_versions => sub ($c, @values) {
 my $VERSION = "1.0.0";
 my $data = [];
 
+# Forward error messages to the application log
+Mojo::IOLoop->singleton->reactor->on(error => sub ($reactor, $err) {
+  app->log->error($err);
+});
+
 Mojo::IOLoop->recurring(86400 => sub ($ioloop) {
     update_python_versions();
 });
