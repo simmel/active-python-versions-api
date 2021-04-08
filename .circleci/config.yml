@@ -14,9 +14,9 @@ jobs:
           paths:
               - /root/.cpan
       - run: cpanm --notest Carton
-      - run: carton install
+      - run: carton install --deployment
       - run: carton exec -- prove t
-      - run: ls
+      - run: ls /root/.cpan
       - persist_to_workspace:
           root: .
           paths:
