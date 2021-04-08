@@ -1,30 +1,33 @@
 version: 2.1
 
 orbs:
-  perl: circleci/perl@1.0.0
   docker: circleci/docker@1.5.0
+
+jobs:
+  build:
+    docker:
+      - image: perl:5.30-slim
+    steps:
+      - checkout
+      - run: cpanm Carton
+      - run: carton install
 
 workflows:
   main:
     jobs:
-      - perl/build:
-          post-steps:
-            - run:
-                command: mkdir build_dir
-          codecov: false
-          save-to-workspace: true
-      - perl/test-linux:
-          matrix:
-            parameters:
-              perl-version:
-                - '5.24'
-                - '5.26'
-                - '5.28'
-                - '5.30'
-          requires:
-            - perl/build
-      - docker/publish:
-          requires:
-            - perl/test-linux
-          deploy: false
-          image: darksoy/$CIRCLE_PROJECT_REPONAME
+      - build:
+      # - perl/test-linux:
+      #     matrix:
+      #       parameters:
+      #         perl-version:
+      #           - '5.24'
+      #           - '5.26'
+      #           - '5.28'
+      #           - '5.30'
+      #     requires:
+      #       - build
+      # - docker/publish:
+      #     requires:
+      #       - perl/test-linux
+      #     deploy: false
+      #     image: darksoy/$CIRCLE_PROJECT_REPONAME
