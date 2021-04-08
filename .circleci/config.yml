@@ -14,9 +14,9 @@ jobs:
       - run: carton exec -- prove t
       - run: ls
       - persist_to_workspace:
-          root: /root
+          root: .
           paths:
-            - project
+            - *
   test:
     parameters:
       version:
