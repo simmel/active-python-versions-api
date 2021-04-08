@@ -9,7 +9,7 @@ jobs:
       - image: perl:5.30-slim
     steps:
       - checkout
-      - run: apt-get update && apt-get install -y build-essential libssl-dev carton
+      - run: apt-get update && apt-get install -y build-essential libssl-dev zlib1g-dev carton
       - run: carton install
       - run: find /root/.cpanm/work/ -name build.log -exec cat {} \;
       - run: carton exec -- prove t
