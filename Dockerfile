@@ -4,7 +4,7 @@ RUN cpanm Carton@1.0.34
 
 COPY cpanfile* ./
 
-RUN carton install --deployment
+RUN carton install --deployment --without develop
 
 COPY *.pl ./
 
