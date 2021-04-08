@@ -15,7 +15,7 @@ jobs:
 workflows:
   main:
     jobs:
-      - build:
+      - build
       # - perl/test-linux:
       #     matrix:
       #       parameters:
