@@ -8,7 +8,7 @@ workflows:
   main:
     jobs:
       - perl/build:
-          pre-steps:
+          post-steps:
             - run:
                 command: mkdir build_dir
           codecov: false
