@@ -5,6 +5,8 @@ orbs:
 
 jobs:
   build:
+    environment:
+      PERL_CPANM_OPT: "--cascade-search --save-dists=$HOME/.cpanm/cache --mirror=$HOME/.cpanm/cache --mirror=https://search.cpan.org/CPAN"
     docker:
       - image: perl:5.30
     steps:
@@ -27,6 +29,8 @@ jobs:
           paths:
               - /root/.cpanm
   test:
+    environment:
+      PERL_CPANM_OPT: "--cascade-search --save-dists=$HOME/.cpanm/cache --mirror=$HOME/.cpanm/cache --mirror=https://search.cpan.org/CPAN"
     parameters:
       version:
         type: string
