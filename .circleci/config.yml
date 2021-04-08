@@ -12,11 +12,11 @@ jobs:
       - restore_cache:
           key: cpan-{{ .Branch }}-{{ checksum "cpanfile.snapshot" }}
           paths:
-              - /root/.cpan
+              - /root/.cpanm
       - run: cpanm --notest Carton
       - run: carton install --deployment
       - run: carton exec -- prove t
-      - run: ls /root/.cpan
+      - run: ls /root/.cpanm
       - persist_to_workspace:
           root: .
           paths:
@@ -24,7 +24,7 @@ jobs:
       - save_cache:
           key: cpan-{{ .Branch }}-{{ checksum "cpanfile.snapshot" }}
           paths:
-              - /root/.cpan
+              - /root/.cpanm
   test:
     parameters:
       version:
@@ -37,7 +37,7 @@ jobs:
       - restore_cache:
           key: cpan-{{ .Branch }}-{{ checksum "cpanfile.snapshot" }}
           paths:
-              - /root/.cpan
+              - /root/.cpanm
       - run: cpanm --notest Carton
       - run: carton exec -- perl -V | head
       - run: carton exec -- prove t
