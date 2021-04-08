@@ -17,6 +17,7 @@ jobs:
       - run: carton install --deployment
       - run: carton exec -- prove t
       - run: ls /root/.cpanm
+      - run: rm -rf local/
       - persist_to_workspace:
           root: .
           paths:
