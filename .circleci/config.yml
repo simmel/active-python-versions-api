@@ -7,7 +7,7 @@ orbs:
 jobs:
   prep:
     docker:
-      - image: cimg/base
+      - image: cimg/base:2021.04
     steps:
       - checkout
       - run: echo $PWD
