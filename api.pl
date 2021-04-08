@@ -42,6 +42,10 @@ sub update_python_versions() {
 
 update_python_versions();
 
+get '/' => sub ($c) {
+  $c->redirect_to("v1");
+};
+
 under '/v1';
 
 get '/' => {text => "I 🐍 Python!\n"};
