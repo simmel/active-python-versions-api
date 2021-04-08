@@ -3,5 +3,5 @@ requires 'IO::Socket::SSL';
 requires 'Mozilla::CA';
 
 on 'develop' => sub {
-  recommends 'App::Prove';
+  requires 'App::Prove';
 };
