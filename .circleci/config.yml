@@ -11,6 +11,7 @@ jobs:
       - checkout
       - run: apt-get update && apt-get install -y libssl-dev carton
       - run: carton install
+      - run: carton exec -- prove t
 
 workflows:
   main:
