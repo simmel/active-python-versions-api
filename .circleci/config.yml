@@ -12,7 +12,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          key: cpan-{{ .Branch }}-{{ checksum "cpanfile.snapshot" }}
+          key: cpan-{{ .Branch }}-{{ checksum "/root/.cpanm" }}
           paths:
               - /root/.cpanm
       - run: cpanm --notest Carton
@@ -25,7 +25,7 @@ jobs:
           paths:
             - "*"
       - save_cache:
-          key: cpan-{{ .Branch }}-{{ checksum "cpanfile.snapshot" }}
+          key: cpan-{{ .Branch }}-{{ checksum "/root/.cpanm" }}
           paths:
               - /root/.cpanm
   test:
@@ -40,7 +40,7 @@ jobs:
       - attach_workspace:
           at: .
       - restore_cache:
-          key: cpan-{{ .Branch }}-{{ checksum "cpanfile.snapshot" }}
+          key: cpan-{{ .Branch }}-{{ checksum "/root/.cpanm" }}
           paths:
               - /root/.cpanm
       - run: cpanm --notest Carton
