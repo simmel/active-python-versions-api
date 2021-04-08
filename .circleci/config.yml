@@ -9,7 +9,7 @@ jobs:
       - image: perl:5.30-slim
     steps:
       - checkout
-      - run: apt update && apt install -y libssl-dev carton
+      - run: apt-get update && apt-get install -y libssl-dev carton
       - run: carton install
 
 workflows:
