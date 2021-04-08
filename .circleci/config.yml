@@ -32,8 +32,13 @@ jobs:
     docker:
       - image: perl:<< parameters.version >>
     steps:
+      - restore_cache:
+          key: cpan-{{ .Branch }}-{{ checksum "cpanfile.snapshot" }}
+          paths:
+              - /root/.cpan
       - attach_workspace:
           at: .
+      - run: cpanm --notest Carton
       - run: carton exec -- perl -V | head
       - run: carton exec -- prove t
 
