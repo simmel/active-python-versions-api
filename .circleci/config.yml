@@ -9,6 +9,10 @@ jobs:
       - image: perl:5.30
     steps:
       - checkout
+      - restore_cache:
+          key: cpan-{{ .Branch }}-{{ checksum "cpanfile.snapshot" }}
+          paths:
+              - /root/.cpan
       - run: cpanm --notest Carton
       - run: carton install
       - run: carton exec -- prove t
@@ -17,6 +21,10 @@ jobs:
           root: .
           paths:
             - *
+      - save_cache:
+          key: cpan-{{ .Branch }}-{{ checksum "cpanfile.snapshot" }}
+          paths:
+              - /root/.cpan
   test:
     parameters:
       version:
