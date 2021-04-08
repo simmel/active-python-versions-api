@@ -62,8 +62,8 @@ workflows:
                 - '5.30'
           requires:
             - build
-      # - docker/publish:
-      #     requires:
-      #       - perl/test-linux
-      #     deploy: false
-      #     image: darksoy/$CIRCLE_PROJECT_REPONAME
+      - docker/publish:
+          requires:
+            - test
+          deploy: false
+          image: darksoy/$CIRCLE_PROJECT_REPONAME
