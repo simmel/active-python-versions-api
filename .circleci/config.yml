@@ -15,7 +15,8 @@ jobs:
       - run: ls
       - persist_to_workspace:
           root: /root
-          path: project
+          paths:
+            - project
   test:
     parameters:
       version:
