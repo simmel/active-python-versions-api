@@ -13,21 +13,35 @@ jobs:
       - run: cpanm --notest Carton
       - run: carton install
       - run: carton exec -- prove t
+      - run: ls
+      - persist_to_workspace:
+          root: .
+  test:
+    parameters:
+      version:
+        type: string
+    docker:
+      - image: perl:<< parameters.version >>
+    steps:
+      - attach_workspace:
+          at: .
+      - run: carton exec -- perl -V | head
+      - run: carton exec -- prove t
 
 workflows:
   main:
     jobs:
       - build
-      # - perl/test-linux:
-      #     matrix:
-      #       parameters:
-      #         perl-version:
-      #           - '5.24'
-      #           - '5.26'
-      #           - '5.28'
-      #           - '5.30'
-      #     requires:
-      #       - build
+      - test:
+          matrix:
+            parameters:
+              version:
+                - '5.24'
+                - '5.26'
+                - '5.28'
+                - '5.30'
+          requires:
+            - build
       # - docker/publish:
       #     requires:
       #       - perl/test-linux
