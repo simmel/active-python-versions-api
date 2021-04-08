@@ -4,23 +4,15 @@ orbs:
   perl: circleci/perl@1.0.0
   docker: circleci/docker@1.5.0
 
-jobs:
-  prep:
-    docker:
-      - image: cimg/base:2021.04
-    steps:
-      - checkout
-      - run: echo $PWD
-      - run: mkdir build_dir
-
 workflows:
   main:
     jobs:
-      - prep
       - perl/build:
+          pre-steps:
+            - run:
+                command: mkdir build_dir
           codecov: false
-          requires:
-            - prep
+          save-to-workspace: true
       - perl/test-linux:
           matrix:
             parameters:
