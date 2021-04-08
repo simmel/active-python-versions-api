@@ -39,6 +39,7 @@ jobs:
           paths:
               - /root/.cpanm
       - run: cpanm --notest Carton
+      - run: carton install --deployment
       - run: carton exec -- perl -V | head
       - run: carton exec -- prove t
 
