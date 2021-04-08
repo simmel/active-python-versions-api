@@ -19,6 +19,8 @@ workflows:
       - prep
       - perl/build:
           codecov: false
+          requires:
+            - prep
       - perl/test-linux:
           matrix:
             parameters:
