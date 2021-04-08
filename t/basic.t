@@ -8,6 +8,9 @@ my $script = curfile->dirname->sibling('api.pl');
 my $t = Test::Mojo->new($script);
 is("meow", "meow", "is meow?");
 
+$t->get_ok('/')
+  ->header_is(location => '/v1');
+
 my @tests = (
 ["t/2021-04-07.html", ["3.9", "3.8", "3.7", "3.6"]]
 );
