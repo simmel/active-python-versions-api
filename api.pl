@@ -50,4 +50,8 @@ under '/v1';
 
 get '/' => {text => "I 🐍 Python!\n"};
 
+get '/versions' => {
+  json => $data,
+};
+
 app->start;
