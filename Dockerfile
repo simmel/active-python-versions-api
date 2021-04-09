@@ -7,6 +7,7 @@ COPY cpanfile* ./
 RUN carton install --deployment --without develop
 
 COPY *.pl ./
+RUN carton exec -- ./api --help
 
 FROM perl:5.30-slim@sha256:a1c146556fb877af41e4308e83d774d248c6e5c8ffb78b6c36be6091cb11d597 AS prod
 WORKDIR /usr/src
