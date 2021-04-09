@@ -52,7 +52,13 @@ workflows:
   main:
     jobs:
       - build
+          filters:
+            tags:
+              only: /.+/
       - test:
+          filters:
+            tags:
+              only: /.+/
           matrix:
             parameters:
               version:
