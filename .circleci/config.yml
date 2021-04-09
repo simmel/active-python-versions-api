@@ -53,6 +53,8 @@ workflows:
     jobs:
       - build
       - docker/publish:
+          context:
+            - docker-hub-credentials
           requires:
             - build
           deploy: false
