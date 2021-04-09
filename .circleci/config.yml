@@ -57,3 +57,4 @@ workflows:
             - build
           deploy: false
           image: darksoy/$CIRCLE_PROJECT_REPONAME
+          extra_build_args: "--target prod"
