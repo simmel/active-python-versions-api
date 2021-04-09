@@ -67,6 +67,7 @@ workflows:
             - docker-hub-credentials
           requires:
             - test
+          docker-username: darksoy
           image: darksoy/$CIRCLE_PROJECT_REPONAME
           tag: "latest,$CIRCLE_TAG"
           extra_build_args: "--target prod"
