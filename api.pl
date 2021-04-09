@@ -8,7 +8,7 @@ app->helper(parse_versions => sub ($c, @values) {
   return $data;
 });
 
-my $VERSION = "1.0.3";
+my $VERSION = "1.0.4";
 my $data = [];
 
 # Forward error messages to the application log
