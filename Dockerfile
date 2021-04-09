@@ -15,6 +15,10 @@ WORKDIR /usr/src
 COPY --from=build /usr/src/local/ local/
 COPY --from=build /usr/src/*.pl ./
 
+RUN apt-get update && \
+  apt-get install -y libssl1.1 && \
+  rm -rf /var/lib/apt/lists/*
+
 ENV PLACK_ENV=production
 EXPOSE 3000
 CMD ["perl", "-I", "local/lib/perl5", "./api.pl", "prefork"]
