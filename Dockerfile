@@ -24,4 +24,4 @@ ENV \
   PERL5LIB=local/lib/perl5 \
   PATH=local/bin:$PATH
 EXPOSE 3000
-CMD ["perl", "-I", "local/lib/perl5", "./api.pl", "prefork"]
+CMD ["morbo", "./api.pl"]
