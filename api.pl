@@ -54,8 +54,8 @@ under '/v1';
 
 get '/' => {text => "I 🐍 Python!\n"};
 
-get '/versions' => {
-  json => $data,
+get '/versions' => sub ($c) {
+  $c->render(json => $data);
 };
 
 app->start;
