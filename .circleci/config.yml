@@ -52,11 +52,21 @@ workflows:
   main:
     jobs:
       - build
+      - test:
+          matrix:
+            parameters:
+              version:
+                - '5.24'
+                - '5.26'
+                - '5.28'
+                - '5.30'
+          requires:
+            - build
       - docker/publish:
           context:
             - docker-hub-credentials
           requires:
-            - build
+            - test
           deploy: false
           image: darksoy/$CIRCLE_PROJECT_REPONAME
           extra_build_args: "--target prod"
