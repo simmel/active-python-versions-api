@@ -51,7 +51,7 @@ jobs:
 workflows:
   main:
     jobs:
-      - build
+      - build:
           filters:
             tags:
               only: /.+/
